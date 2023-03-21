@@ -32,4 +32,4 @@ This project depends on the following libraries:
 ### Challenges Faced
 During the development of this project, I faced a challenge that I had to overcome:
 
- **- Handling OAuth2 Authorization Flow** The most significant challenge I faced was implementing the Dropbox OAuth2 Authorization Flow using the DropboxOAuth2Flow function provided by the python SDK. After reading through the documentation and some experimentation, I was able to use the Dropbox OAuth2 API directly by using HTTP requests and handling the responses.
+  - **Handling OAuth2 Authorization Flow:** The most significant challenge I faced was implementing the Dropbox OAuth2 Authorization Flow using the DropboxOAuth2Flow function provided by the python SDK. After reading through the documentation and some experimentation, I was able to use the Dropbox OAuth2 API directly by using HTTP requests and handling the responses.
