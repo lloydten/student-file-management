@@ -14,20 +14,20 @@ To run this application, you will need:
 4. Start the development server by running python3 manage.py runserver.
 
 # Features
- • Connect to your Dropbox account by authorizing the app.
- • View all your files and folders on Dropbox.
- • Delete, download, search and upload files.
- • Filter files by file type.
+ - Connect to your Dropbox account by authorizing the app.
+ - View all your files and folders on Dropbox.
+ - Delete, download, search and upload files.
+ - Filter files by file type.
  
  
 # Limitations and Known Issues
 
- • There may be some bugs or issues that have not been discovered yet.
+ - There may be some bugs or issues that have not been discovered yet.
 
 # Dependencies
 This project depends on the following libraries:
- • Dropbox Python SDK
- • Django
+ - Dropbox Python SDK
+ - Django
 
 # Challenges Faced
 During the development of this project, I faced a challenge that I had to overcome:
