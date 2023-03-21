@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        {% for pdf in pdfs %}
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="https://img.freepik.com/free-icon/pdf_318-187733.jpg" alt="PDF Logo" class="img-fluid mb-2">
+                        
+                    </div>
+                </div>
+                <h5 class="card-title">{{ pdf.name }}</h5>
+            </div>
+            <h5 class="card-title">{{ pdf.link }}</h5>
+        {% endfor %}
+    </div>
+{% endblock %}

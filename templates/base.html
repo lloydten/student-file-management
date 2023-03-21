@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>studentFilemanager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+      
+        /* Set the height of the left sidebar to cover the full height of the page */
+        .sidebar {
+            height: 100vh;
+            border-right: 1px solid #ccc;
+           
+            
+        }
+
+        /* Set the card height and width */
+        .card-icon {
+            height: 60px;
+            width: 80px;
+          
+        }
+        #card-text{
+            margin-bottom: 40px;
+        } 
+
+
+
+        .card {
+           border-radius: 10px;
+      }
+
+.sidebar .row {
+    justify-content: center;
+    margin-top: 5vh;
+  }
+  
+
+
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  /* border: 1px; */
+  border-bottom: 1px solid #ccc;
+}
+
+.image {
+  width: 140px;
+  height: 140px;
+  object-fit:contain;
+  margin-right: 20px;
+  /* border: 1px solid #ccc; */
+}
+
+.text {
+  flex: 1;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 11px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+
+/* second box */
+.card {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.card-img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  font-size: 11px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+
+
+.contact-button {
+  
+
+  padding: 5px 20px; /* adjust the vertical padding to reduce the height */
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 15px;
+  
+}
+
+.btn-black {
+  background-color: #000;
+  color: #fff;
+}
+
+.btn-black:hover {
+  background-color: #333;
+}
+
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.btn-white {
+  background-color: #fff;
+  color: #000;
+}
+
+.btn-white:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.button-space {
+  width: 20px;
+  height: 1px;
+  background-color: transparent;
+}
+
+
+/* bottom nav bar */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffffff;
+  box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  width: 300px;
+  z-index: 999;
+}
+
+.bottom-nav a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #7f8c8d;
+  width: 33%;
+  height: 50px;
+  border-radius: 25px;
+  transition: all 0.3s ease-in-out;
+}
+
+.bottom-nav a.active,
+.bottom-nav a:hover {
+  color: #ffffff;
+  background-color: #3498db;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-nav i {
+  font-size: 20px;
+}
+   
+  </style>
+    
+</head>
+
+<body>
+   
+     <!-- Top Navbar -->
+     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#">studentFilemanager</a>
+            </li>
+        </ul>
+        
+        <!-- Right Navbar -->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+              <button class="btn btn-success contact-button" onclick="window.location.href='{% url 'index' %}'">Switch User</button>
+                
+            </li>
+        </ul>
+    </nav>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <!-- Left Sidebar -->
+    <div class="col-lg-3 col-md-3 col-12  sidebar">
+
+         <!-- Student information -->
+    <div class="container">
+      <img  class="image" src="https://cdnb.artstation.com/p/assets/images/images/034/457/411/large/shin-min-jeong-.jpg?1612345193" alt="Square image">
+      <div class="text">
+        <h2 style="font-size:20px;font-family: Arial, sans-serif;">{{name}}</h2>
+       
+        <p> {{ files_total }} FILES</p>
+         <button class="btn contact-button"style="background-color:black;color:white;" >Change Pic</button>
+         
+      </div>
+    </div>
+      
+      <div class="row ">
+        <div class="col-xl-4 col-md-6 col-4  mb-3">
+          <div class="card card-icon service-card" style="background-color: #e8e8e8;">
+            <div class="card-body d-flex justify-content-center align-items-center">
+             <a href="{% url 'images' %}"><img src="https://cdn-icons-png.flaticon.com/512/2659/2659360.png"style="height:40px;width: 40px;" alt="Image"></a> 
+            </div>
+          </div>
+          <div class="card-text">Images</div>
+        </div>
+
+        
+        <!-- Card 2 -->
+        <div class="col-xl-4 col-md-6 col-4 mb-3">
+          <div class="card card-icon" style="background-color: #e8e8e8;">
+            <div class="card-body d-flex justify-content-center align-items-center">
+             <a href="{% url 'videos' %}"> <img src="https://cdn-icons-png.flaticon.com/512/3845/3845856.png"style="height:40px;width: 40px;" alt="Image"></a>
+            </div>
+          </div>
+          <div class="card-text">Videos</div>
+        </div>
+
+      
+        <!-- Card 3 -->
+        <div class="col-xl-4 col-md-6 col-4 mb-3">
+          <div class="card card-icon"  style="background-color: #e8e8e8;">
+            <div class="card-body d-flex justify-content-center align-items-center">
+              <a href="{% url 'audio' %}">
+                <img src="https://cdn-icons-png.flaticon.com/512/9380/9380416.png" style="height:40px;width: 40px;" alt="Image">
+              </a>            
+            </div>
+          </div>
+          <div class="card-text">Audio</div>
+        </div>
+
+
+        
+        <!-- Card 4 -->
+        <div class="col-xl-4 col-md-6 col-4 mb-3">
+          <div class="card card-icon"  style="background-color: #e8e8e8;">
+            <div class="card-body d-flex justify-content-center align-items-center">
+              <a href="{% url 'pdfs' %}">
+                <img src=" https://cdn-icons-png.flaticon.com/512/9496/9496432.png" style="height:40px;width: 40px;" alt="Image">
+              </a>   
+            </div>
+          </div>
+          <div class="card-text">PDF</div>
+        </div>
+
+
+        <!-- Card 5 -->
+        <div class="col-xl-4 col-md-6 col-4 mb-3">
+          <div class="card card-icon"  style="background-color: #e8e8e8;">
+            <div class="card-body d-flex justify-content-center align-items-center">
+              <a href="{% url 'text_files' %}">
+                <img src=" https://cdn-icons-png.flaticon.com/512/2921/2921784.png" style="height:40px;width: 40px;" alt="Image">
+              </a>  
+            </div>
+          </div>
+          <div class="card-text">Text Files</div>
+        </div>
+        <!-- Card 6 -->
+        <div class="col-xl-4 col-md-6 col-4 mb-3">
+          <div class="card card-icon"  style="background-color: #e8e8e8;">
+            <div class="card-body d-flex justify-content-center align-items-center">
+              <a href="{% url 'code_files' %}">
+                <img src=" https://cdn-icons-png.flaticon.com/512/9677/9677825.png" style="height:40px;width: 40px;" alt="Image">
+              </a>  
+            </div>
+          </div>
+          <div class="card-text">Code Files</div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-4 mb-3">
+            <div class="card card-icon"  style="background-color: #e8e8e8;">
+              <div class="card-body d-flex justify-content-center align-items-center">
+                <a href="{% url 'home' %}">
+                    <img src="https://cdn-icons-png.flaticon.com/512/9073/9073032.png" style="height:40px;width: 40px;" alt="Image">
+                  </a>  
+              </div>
+              
+            </div>
+            <div class="card-text">home</div>
+          </div>
+      </div>
+   
+    </div>
+    
+
+          
+         <!-- Right Content -->
+         <div class="col-sm-9 d-none d-sm-block" style="background-color:rgb(255, 255, 255)">
+         
+        
+          {% block content %}
+          {% endblock %}
+      </div>
+    </div>
+</body>
+
+
+</html>

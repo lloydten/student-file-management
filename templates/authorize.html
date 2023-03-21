@@ -1,0 +1,61 @@
+
+ <!DOCTYPE html>
+ <html>
+ <head>
+   <title>Authorize access to Dropbox</title>
+   <style>
+     body {
+       background-color: #ffffff;
+       font-family: Arial, sans-serif;
+       font-size: 16px;
+       line-height: 1.5;
+       margin: 0;
+       padding: 0;
+     }
+     h1 {
+       color: #333;
+       font-size: 36px;
+       font-weight: 700;
+       margin-bottom: 20px;
+       text-align: center;
+     }
+     p {
+       color: #666;
+       font-size: 20px;
+       margin-bottom: 30px;
+       text-align: center;
+     }
+     form {
+       display: flex;
+       justify-content: center;
+       margin-bottom: 50px;
+     }
+     button {
+       background-color: #007ee5;
+       border: none;
+       border-radius: 3px;
+       color: #fff;
+       cursor: pointer;
+       font-size: 24px;
+       font-weight: 700;
+       padding: 10px 30px;
+       transition: all 0.2s ease-in-out;
+     }
+     button:hover {
+       background-color: #005ab4;
+       transform: scale(1.05);
+     }
+   </style>
+ </head>
+
+ <body>
+   <h1>Authorize access to Dropbox</h1>
+ <p>To use this app, you need to authorize access to your Dropbox account:</p>
+ 
+ <form method="post" action="{% url 'authorize' %}">
+   {% csrf_token %}
+   <button type="submit">Authorize</button>
+ </form>
+ 
+ </body>
+ </html>

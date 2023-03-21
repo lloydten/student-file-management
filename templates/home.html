@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Student Files Dashboard</title>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <style>
+
+
+
+.form-control {
+  height: 70px;
+ 
+}
+
+
+.custom-card {
+  height: 90px;
+}
+
+.custom-card .card-img-left {
+  height: 100%;
+  object-fit: cover;
+}
+.upload-box {
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+}
+
+.upload-box i {
+  font-size: 50px;
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+.upload-box p {
+  font-size: 16px;
+  color: #666;
+  margin: 5px 0;
+}
+
+
+.card-footer{
+  background-color: whitegt;
+}
+  </style>
+  <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        Home
+      </a>
+    </nav>
+
+
+    <!-- Main Content -->
+    <div  class="upload-box mt-4" style="border: dotted; border-color:#ccc">
+      <div onclick="upload_click()" id="upload_box_text_div">
+      <i  class="fas fa-cloud-upload-alt"></i>
+      <p ><strong>Drag and Drop or Click Here</strong></p>
+      <p >to upload your file</p>
+     </div>
+      <form method="post"  action="{% url 'upload_file' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label style="display: none;" for="file">Select a file:</label>
+            <input id="upload_input" onchange="new_file()" style="display: none;" type="file" name="file" id="file">
+        </div>
+        <div id="file_name_div" style="display: none;">
+        <p id="file_name_text" ></p>
+        <button style="margin-left:auto;margin-right: auto;" type="submit" class="btn btn-primary">Upload</button>
+      </div>
+    </form>
+    </div>
+
+  
+
+
+      <!-- Search Bar -->
+     
+    <div class="mt-3">
+      <form id="search-form" >
+      <input id="search-input" type="text" class="form-control" placeholder="Search..." autofocus>
+      <button style="display: none;" type="submit">Search</button>
+    </form>
+    </div>
+
+
+     <!-- Where your search results will be displayed -->
+     <div id="search-results"></div>
+
+    <!-- List Of Files -->
+    <div class="row mt-4" id="all_files_div">
+      {% for file in files %}
+      <div class="col-12 mb-2">
+        <div class="card d-flex flex-row custom-card">
+          <img src="{{ file.preview_url }}" style="height:60px;width:60px;margin-top: 10px;margin-left: 10px;" class="card-img-left" onerror="this.src='https://www.libreriaalberti.com/static/img/no-preview.jpg';"/>
+          <div style="padding-top:10px;" class="card-body">
+            <h5 class="card-title" style="font-size:smaller">{{ file.name }}</h5>
+            <p class="card-text">{{ file.path_display }}</p>
+            <p class="card-text"><small class="text-muted">{{ file.size }} bytes</small></p>
+          </div>
+          <div class="card-footer">
+            <form method="POST" action="{% url 'download_file' %}">
+              {% csrf_token %}
+              <input type="hidden" name="file_download" value="{{ file.path_display }}">
+              <button type="submit" class="btn text-success"><i class="fas fa-download"></i></button>
+            </form>
+          </div>
+          <div class="card-footer">
+            <form method="POST" action="{% url 'delete_file' %}">
+              {% csrf_token %}
+              <input type="hidden" name="file_path" value="{{ file.path_display }}">
+              <button type="submit" class="btn btn-link text-danger"><i class="fas fa-trash-alt"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    
+      
+    <!-- Bootstrap JS CDN -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+
+$(function() {
+  $('#search-form').on('submit', function(e) {
+    e.preventDefault();
+    var query = $('#search-input').val();
+    $.ajax({
+      url: "{% url 'search'%}",
+      data: { query: query },
+      success: function(data) {
+        var $searchResults = $('#search-results').empty();
+        for (var i = 0; i < data.file_cards.length; i++) {
+
+          var all_files_div = document.getElementById("all_files_div");
+          all_files_div.style.display = "none"
+          var file_card = data.file_cards[i];
+          $searchResults.append(file_card);
+        }
+      },
+      error: function() {
+        console.log('Error');
+      }
+    });
+  });
+});
+
+      </script>
+
+<script>
+  function upload_click(){
+    var upload_input = document.getElementById("upload_input");
+    upload_input.click()
+
+
+}
+
+function new_file(){
+    var file_name = document.getElementById("upload_input");
+    var file_name_div = document.getElementById("file_name_div");
+    var file_name_text = document.getElementById("file_name_text");
+    var upload_box_text_div  = document.getElementById("upload_box_text_div");
+
+
+    file_name_text.innerHTML = file_name.value;
+    file_name_div.style.display = "block"
+    // upload_box_text_div.style.display="none"
+
+
+    console.log(file_name.value)
+
+
+}
+</script>
+  </body>
+</html>
+
+
+
+
+
+{% endblock %}
+
+
+

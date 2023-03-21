@@ -1,0 +1,26 @@
+<!-- file_card.html -->
+<div class="col-12 mb-4">
+    <div class="card d-flex flex-row custom-card">
+      <img src="{{ file.preview_url }}" class="card-img-left" onerror="this.src='https://recombigen.com/wp-content/uploads/woocommerce-placeholder-500x500.png';"/>
+      <div class="card-body">
+        <h5 class="card-title">{{ result.name }}</h5>
+        <p class="card-text">{{ result.path_display }}</p>
+        <p class="card-text"><small class="text-muted">{{ file.size }} bytes</small></p>
+      </div>
+      <div class="card-footer">
+        <form >
+          {% csrf_token %}
+          <input type="hidden" name="file_download" value="{{ result.path_display }}">
+          <button type="submit" class="btn btn-danger">Download</button>
+        </form>
+      </div>
+      <div class="card-footer">
+        <form >
+          {% csrf_token %}
+          <input type="hidden" name="file_path" value="{{ result.path_display }}">
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

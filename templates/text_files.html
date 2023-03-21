@@ -1,0 +1,20 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        {% for text in texts %}
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="https://static.vecteezy.com/system/resources/previews/006/692/271/original/document-icon-template-black-color-editable-document-icon-symbol-flat-illustration-for-graphic-and-web-design-free-vector.jpg" alt="text Logo" class="img-fluid mb-2">
+                        
+                    </div>
+
+                </div>
+                <h5 class="card-title">{{ text.name }}</h5>
+            </div>
+            
+        {% endfor %}
+    </div>
+{% endblock %}

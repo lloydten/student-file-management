@@ -1,0 +1,26 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        {% for image in images %}
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card">
+                    {% if image.preview_url %}
+                        <img src="{{ image }}" class="card-img-top" alt="{{ image.name }}">
+                    {% else %}
+                        <img src="{{ image}}" class="card-img-top" alt="{{ image.name }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ image.name }}</h5>
+                        <p class="card-text">{{ image.path_display }}</p>
+                        <p class="card-text"><small class="text-muted">{{ image.size }} bytes</small></p>
+                    </div>
+                </div>
+            </div>
+            <h5 class="card-title">{{ image.link }}</h5>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+

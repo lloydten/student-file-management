@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        {% for video in videos %}
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card">
+                    <video src="{{ video }}" class="card-img-top" controls></video>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ video.name }}</h5>
+                        <p class="card-text">{{ video.path_display }}</p>
+                        <p class="card-text"><small class="text-muted">{{ video.size }} bytes</small></p>
+                    </div>
+                </div>
+            </div>
+            <h5 class="card-title">{{ video.link }}</h5>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        {% for audio in audio_files %}
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card">
+                    <audio src="{{ audio }}" class="card-img-top" controls></audio>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ audio.name }}</h5>
+                        <p class="card-text">{{ audio.path_display }}</p>
+                        <p class="card-text"><small class="text-muted">{{ audio.size }} bytes</small></p>
+                    </div>
+                </div>
+            </div>
+            <h5 class="card-title">{{ audio.link }}</h5>
+        {% endfor %}
+    </div>
+{% endblock %}
