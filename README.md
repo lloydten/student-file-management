@@ -3,9 +3,9 @@ This is a web application that allows students to connect to their Dropbox accou
 
 # System Requirements
 To run this application, you will need:
-   • Python 3
-   • Django
-   • Dropbox Python SDK
+ • Python 3
+ • Django
+ • Dropbox Python SDK
 
 # Setup
 1. Clone this repository to your local machine.
